@@ -1,9 +1,0 @@
-/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/release/core-1.0-a112f90c9fbae96b29e8b5a80d3b62e3770cdcc7.jar
-/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/release/gdx-freetype-1.4.1-485e6284ccb89f4a71ef6fe562d453464d6a503d.jar
-/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/release/internal_impl-21.0.0-c9d046ba2cd3b8a4d826a1ed46e2d8f6c3bb1b36.jar
-/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/release/classes-4fc54b08fb0f8d0050dffc98f348bcff8e404368.jar
-/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/release/gdx-1.4.1-16dd4594cef9557d51004c41c588af563832a10a.jar
-/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/release/support-annotations-21.0.0-46343f13dc8a8d80032074a2865adb0d89f89059.jar
-/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/release/gdx-backend-android-1.4.1-7a260c24c611b646633c8c920faf4f26e83a9b63.jar
-/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/release/classes-112c4a1d53efbd9c8e5733de177370ea7329882a.jar
-/home/zetta/Projects/Poke/android/build/intermediates/classes/free/release
