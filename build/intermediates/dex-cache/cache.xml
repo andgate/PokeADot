@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/zetta/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-freetype/1.4.1/5f54c6af55fa98e8dc469809e952c980e07541a/gdx-freetype-1.4.1.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="05f54c6af55fa98e8dc469809e952c980e07541a">
+        <dex dex="/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/debug/gdx-freetype-1.4.1-485e6284ccb89f4a71ef6fe562d453464d6a503d.jar" />
+    </item>
+    <item
+        jar="/home/zetta/Projects/Poke/core/build/libs/core-1.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="e412fb04ca3aa6c4d416e6e1aa03296c371677a4">
+        <dex dex="/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/release/core-1.0-a112f90c9fbae96b29e8b5a80d3b62e3770cdcc7.jar" />
+    </item>
+    <item
+        jar="/home/zetta/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.4.1/df470d263438048af74860ca51fc497c16a0c76a/gdx-1.4.1.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="df470d263438048af74860ca51fc497c16a0c76a">
+        <dex dex="/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/debug/gdx-1.4.1-16dd4594cef9557d51004c41c588af563832a10a.jar" />
+    </item>
+    <item
+        jar="/opt/android-sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
+        <dex dex="/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/debug/support-annotations-21.0.0-46343f13dc8a8d80032074a2865adb0d89f89059.jar" />
+    </item>
+    <item
+        jar="/home/zetta/Projects/Poke/android/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
+        <dex dex="/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/debug/classes-112c4a1d53efbd9c8e5733de177370ea7329882a.jar" />
+    </item>
+    <item
+        jar="/home/zetta/Projects/Poke/android/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.1.71/classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="0f6d5c1ef2e982c3b7858408e3df389cf5d202da">
+        <dex dex="/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/debug/classes-4fc54b08fb0f8d0050dffc98f348bcff8e404368.jar" />
+    </item>
+    <item
+        jar="/home/zetta/Projects/Poke/android/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/libs/internal_impl-21.0.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
+        <dex dex="/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/debug/internal_impl-21.0.0-c9d046ba2cd3b8a4d826a1ed46e2d8f6c3bb1b36.jar" />
+    </item>
+    <item
+        jar="/home/zetta/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.4.1/eca2621f18b162c03992bd3ecc226e8a477dc6f9/gdx-backend-android-1.4.1.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="eca2621f18b162c03992bd3ecc226e8a477dc6f9">
+        <dex dex="/home/zetta/Projects/Poke/android/build/intermediates/pre-dexed/free/debug/gdx-backend-android-1.4.1-7a260c24c611b646633c8c920faf4f26e83a9b63.jar" />
+    </item>
+
+</items>

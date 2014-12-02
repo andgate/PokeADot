@@ -41,8 +41,8 @@
       <file leaf-file-name="Poke.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/com/andgate/poke/Poke.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13992538" vertical-offset="450" max-vertical-offset="3705">
-              <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+            <state vertical-scroll-proportion="-0.19589552" vertical-offset="810" max-vertical-offset="3705">
+              <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
               <folding>
                 <element signature="e#0#8484#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -57,6 +57,11 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="true" />
     </FindUsagesManager>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="$USER_HOME$/.apk_key/andgate.jks" />
+    <option name="KEY_ALIAS" value="andgate" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="GradleLocalSettings">
     <option name="tasksExpandState">
@@ -1709,8 +1714,12 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="048de7c2093ad5e0" />
     <property name="dynamic.classpath" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/.apk_key/andgate.jks" />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/android" />
+    <property name="ExportApk.Flavors" value="free&#10;paid" />
+    <property name="ExportApk.BuildType" value="release" />
   </component>
-  <component name="RunManager" selected="Application.Desktop">
+  <component name="RunManager" selected="Android Application.android">
     <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
       <module name="" />
       <setting name="path" value="" />
@@ -2211,8 +2220,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/andgate/poke/Poke.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13992538" vertical-offset="450" max-vertical-offset="3705">
-          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+        <state vertical-scroll-proportion="-0.19589552" vertical-offset="810" max-vertical-offset="3705">
+          <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
           <folding>
             <element signature="e#0#8484#0" expanded="true" />
             <element signature="imports" expanded="true" />
