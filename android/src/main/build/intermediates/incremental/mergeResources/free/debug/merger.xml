@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/zetta/Projects/Poke/android/res"><file name="ic_launcher" path="/home/zetta/Projects/Poke/android/res/drawable-hdpi/ic_launcher.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_launcher" path="/home/zetta/Projects/Poke/android/res/drawable-xhdpi/ic_launcher.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_launcher" path="/home/zetta/Projects/Poke/android/res/drawable-mdpi/ic_launcher.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_launcher" path="/home/zetta/Projects/Poke/android/res/drawable-xxhdpi/ic_launcher.png" qualifiers="xxhdpi-v4" type="drawable"/><file path="/home/zetta/Projects/Poke/android/res/values/strings.xml" qualifiers=""><string name="app_name">Poke</string></file><file path="/home/zetta/Projects/Poke/android/res/values/styles.xml" qualifiers=""><style name="GdxTheme" parent="android:Theme">
+		<item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+    </style></file></source><source path="/home/zetta/Projects/Poke/android/build/generated/res/rs/free/debug"/><source path="/home/zetta/Projects/Poke/android/build/generated/res/generated/free/debug"/></dataSet><dataSet config="free"><source path="/home/zetta/Projects/Poke/android/src/free/res"/></dataSet><dataSet config="debug"><source path="/home/zetta/Projects/Poke/android/src/debug/res"/></dataSet><dataSet config="freeDebug"><source path="/home/zetta/Projects/Poke/android/src/freeDebug/res"/></dataSet><mergedItems/></merger>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/zetta/Projects/Poke/android/src/androidTest/res"/><source path="/home/zetta/Projects/Poke/android/build/generated/res/rs/test/free/debug"/><source path="/home/zetta/Projects/Poke/android/build/generated/res/generated/test/free/debug"/></dataSet><dataSet config="androidTestFree"><source path="/home/zetta/Projects/Poke/android/src/androidTestFree/res"/></dataSet><mergedItems/></merger>
