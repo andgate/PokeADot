@@ -51,7 +51,7 @@ public class PlayResultsScreen implements Screen
         }
 
         // Retry and exit buttons
-        final ImageButton nextButton = game.createIconButton(game.GO_ICON_LOCATION, game.GO_ICON_DOWN_LOCATION,
+        final ImageButton nextButton = game.createIconButton(Constants.GO_ICON_LOCATION, Constants.GO_ICON_DOWN_LOCATION,
                 new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y){
@@ -60,7 +60,7 @@ public class PlayResultsScreen implements Screen
                     }
                 });
 
-        final ImageButton replayButton = game.createIconButton(game.REPLAY_ICON_LOCATION, game.REPLAY_ICON_DOWN_LOCATION,
+        final ImageButton replayButton = game.createIconButton(Constants.REPLAY_ICON_LOCATION, Constants.REPLAY_ICON_DOWN_LOCATION,
                 new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y){
@@ -121,7 +121,7 @@ public class PlayResultsScreen implements Screen
     @Override
     public void render(float delta)
     {
-        Gdx.gl20.glClearColor(game.BG_COLOR.r, game.BG_COLOR.g, game.BG_COLOR.b, 1);
+        Gdx.gl20.glClearColor(Constants.BG_COLOR.r, Constants.BG_COLOR.g, Constants.BG_COLOR.b, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();

@@ -45,18 +45,20 @@ public class PracticeResultsScreen implements Screen
         Gdx.input.setInputProcessor(stage);
 
         // Retry and exit buttons
-        ImageButton nextButton = game.createIconButton(game.GO_ICON_LOCATION, game.GO_ICON_DOWN_LOCATION,
+        ImageButton nextButton = game.createIconButton(Constants.GO_ICON_LOCATION, Constants.GO_ICON_DOWN_LOCATION,
                 new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y){
+                        game.buttonPressedSound.play();
                         goMainMenu();
                     }
                 });
 
-        ImageButton replayButton = game.createIconButton(game.REPLAY_ICON_LOCATION, game.REPLAY_ICON_DOWN_LOCATION,
+        ImageButton replayButton = game.createIconButton(Constants.REPLAY_ICON_LOCATION, Constants.REPLAY_ICON_DOWN_LOCATION,
                 new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y){
+                        game.buttonPressedSound.play();
                         goReplay();
                     }
                 });
@@ -104,8 +106,8 @@ public class PracticeResultsScreen implements Screen
         table.add(acurracyTitleLabel).top().left();
         table.add(accuracyLabel).expand().top().left().row();
 
-        table.add(replayButton).bottom().left();
-        table.add(nextButton).expand().bottom().right();
+        table.add(replayButton).bottom().center();
+        table.add(nextButton).expand().bottom().center();
 
         table.setFillParent(true);
 
@@ -131,7 +133,7 @@ public class PracticeResultsScreen implements Screen
     @Override
     public void render(float delta)
     {
-        Gdx.gl20.glClearColor(game.BG_COLOR.r, game.BG_COLOR.g, game.BG_COLOR.b, 1);
+        Gdx.gl20.glClearColor(Constants.BG_COLOR.r, Constants.BG_COLOR.g, Constants.BG_COLOR.b, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();

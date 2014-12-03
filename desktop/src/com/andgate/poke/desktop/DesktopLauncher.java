@@ -9,6 +9,10 @@ public class DesktopLauncher {
 
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+        config.samples=16;
+        //config.useGL30=true;
+        config.resizable=false;
+        config.vSyncEnabled=true;
 		new LwjglApplication(new Poke(IS_FREE), config);
 	}
 }

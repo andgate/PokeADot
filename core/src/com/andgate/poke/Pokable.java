@@ -51,12 +51,6 @@ public class Pokable
     private float timeLimit;
     private float timeElapsed;
 
-    private static final float MAX_BORDER_THICKNESS = 8.0f * Gdx.graphics.getDensity();
-    private static final float POINTS_PER_SIZE = 3000.0f / 7.0f;
-    private static final float POINTS_FROM_SIZE_CORRECTION = -5.0f / 7.0f;
-    private static final float POINTS_PER_LIFETIME = -5.0f / 3.0f;
-    private static final float POINTS_FROM_LIFETIME_CORRECTION = 20.0f / 3.0f;
-
     private final static float NO_TIME = 0.0f;
 	
 	public Pokable(final Poke newGame, Circle newCircle, Color newColor, float newTimeLimit)
@@ -84,10 +78,11 @@ public class Pokable
                 updateHit(delta);
                 break;
             case DESTRUCT:
-                // nothing happens
+                // Maybe do cool animation
+                pokableState = PokableState.EXPIRED;
                 break;
             case EXPIRED:
-                // nothing happens
+                // Do nothing, wait to be removed.
                 break;
         }
     }
@@ -97,15 +92,15 @@ public class Pokable
         timeElapsed += delta;
         if(visualCircle.radius <= 0.0f)
         {
-            pokableState = PokableState.EXPIRED;
+            pokableState = PokableState.DESTRUCT;
             hittableCircle.radius = 0.0f;
         }
         else
         {
             visualCircle.radius = initialCircle.radius * (1.0f - timeElapsed/timeLimit);
-            hittableCircle.radius = visualCircle.radius >= game.minCircleRadius
+            hittableCircle.radius = visualCircle.radius >= Constants.MINIMUM_CIRCLE_RADIUS
                                     ? visualCircle.radius
-                                    : game.minCircleRadius;
+                                    : Constants.MINIMUM_CIRCLE_RADIUS;
         }
     }
 
@@ -132,13 +127,17 @@ public class Pokable
     public void renderActiveCircle()
     {
         float outerRadius = visualCircle.radius;
-        float innerRadius = outerRadius * (1 - MAX_BORDER_THICKNESS / game.maxCircleRadius);
+        float innerRadius = outerRadius - Constants.CIRCLE_BORDER_THICKNESS;
+        if(innerRadius < 0.0f)
+        {
+            innerRadius = 0.0f;
+        }
 
         game.shape.setColor(color.r - 0.3f, color.g - 0.3f, color.b - 0.3f, color.a);
-        game.shape.circle(visualCircle.x, visualCircle.y, outerRadius);
+        game.shape.circle(visualCircle.x * game.ppm, visualCircle.y * game.ppm, outerRadius * game.ppm, Constants.CIRCLE_SEGMENTS);
 
         game.shape.setColor(color);
-        game.shape.circle(visualCircle.x, visualCircle.y, innerRadius);
+        game.shape.circle(visualCircle.x * game.ppm, visualCircle.y * game.ppm, innerRadius * game.ppm, Constants.CIRCLE_SEGMENTS);
     }
 
     public boolean collidesWith(Pokable otherPokable)

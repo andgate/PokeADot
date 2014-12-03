@@ -59,7 +59,6 @@ public class GameScreen implements Screen
     }
 
     InputMultiplexer im;
-    OrthographicCamera camera;
 
     Stage introStage;
     Stage pauseMenuStage;
@@ -95,27 +94,37 @@ public class GameScreen implements Screen
         im.addProcessor(new GameInputProcessor());
         Gdx.input.setInputProcessor(im);
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, game.screenWidth, game.screenHeight);
-
         pokables = new Array<Pokable>();
         pokablesExpired = 0;
         forceSpawn();
 
-        buildIntroStage();
-        buildPauseButtonScene();
-        buildPauseMenuScene();
-        buildGameOverStage();
+        buildStages();
 
         im.setProcessors(new Array<InputProcessor>(
                 new InputProcessor[]{new GameInputProcessor()}
         ));
     }
 
+    private void buildStages()
+    {
+        buildIntroStage();
+        buildPauseButtonScene();
+        buildPauseMenuScene();
+        buildGameOverStage();
+    }
+
+    private void disposeStages()
+    {
+        introStage.dispose();
+        pauseMenuStage.dispose();
+        pauseButtonStage.dispose();
+        gameOverStage.dispose();
+    }
+
     private void buildIntroStage()
     {
         introStage = new Stage();
-        introStage.getViewport().setCamera(camera);
+        //introStage.getViewport().setCamera(camera);
 
         Label.LabelStyle labelStyle = new Label.LabelStyle(game.mediumSmallFont, Color.WHITE);
         Label instructionsLabel = new Label(INSTRUCTIONS_TEXT, labelStyle);
@@ -133,9 +142,9 @@ public class GameScreen implements Screen
     private void buildPauseButtonScene()
     {
         pauseButtonStage = new Stage();
-        pauseButtonStage.getViewport().setCamera(camera);
+        //pauseButtonStage.getViewport().setCamera(camera);
 
-        ImageButton pauseButton = game.createIconButton(game.PAUSE_ICON_LOCATION, game.PAUSE_ICON_DOWN_LOCATION,
+        ImageButton pauseButton = game.createIconButton(Constants.PAUSE_ICON_LOCATION, Constants.PAUSE_ICON_DOWN_LOCATION,
                 new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -159,9 +168,9 @@ public class GameScreen implements Screen
     private void buildPauseMenuScene()
     {
         pauseMenuStage = new Stage();
-        pauseMenuStage.getViewport().setCamera(camera);
+        //pauseMenuStage.getViewport().setCamera(camera);
 
-        ImageButton playButtonWrapper = game.createIconButton(game.PLAY_ICON_LOCATION, game.PLAY_ICON_DOWN_LOCATION,
+        ImageButton playButtonWrapper = game.createIconButton(Constants.PLAY_ICON_LOCATION, Constants.PLAY_ICON_DOWN_LOCATION,
                 new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y){
@@ -175,7 +184,7 @@ public class GameScreen implements Screen
                     }
                 });
 
-        ImageButton stopButtonWrapper = game.createIconButton(game.STOP_ICON_LOCATION, game.STOP_ICON_DOWN_LOCATION,
+        ImageButton stopButtonWrapper = game.createIconButton(Constants.STOP_ICON_LOCATION, Constants.STOP_ICON_DOWN_LOCATION,
                 new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -203,7 +212,7 @@ public class GameScreen implements Screen
     private void buildGameOverStage()
     {
         gameOverStage = new Stage();
-        gameOverStage.getViewport().setCamera(camera);
+        //gameOverStage.getViewport().setCamera(camera);
 
         final Label.LabelStyle largeLabelStyle = new Label.LabelStyle(game.largeFont, new Color(1.0f, 0.0f, 0.0f, 0.7f));
         final Label.LabelStyle smallLabelStyle = new Label.LabelStyle(game.smallFont, new Color(1.0f, 1.0f, 1.0f, 0.7f));
@@ -223,7 +232,7 @@ public class GameScreen implements Screen
     private void buildGameOverContinueStage()
     {
         gameOverStage = new Stage();
-        gameOverStage.getViewport().setCamera(camera);
+        //gameOverStage.getViewport().setCamera(camera);
 
         final Label.LabelStyle largeLabelStyle = new Label.LabelStyle(game.largeFont, new Color(0.7f, 0.0f, 0.0f, 0.7f));
         final Label.LabelStyle smallLabelStyle = new Label.LabelStyle(game.smallFont, new Color(1.0f, 1.0f, 1.0f, 0.7f));
@@ -355,7 +364,7 @@ public class GameScreen implements Screen
         game.batch.begin();
         renderText();
         if (gameState != GameState.RUN)
-            game.batch.draw(game.pauseBG, 0.0f, 0.0f, game.screenWidth, game.screenHeight); // dims the screen
+            game.batch.draw(game.pauseBG, 0.0f, 0.0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); // dims the screen
         game.batch.end();
 
         game.batch.begin();
@@ -410,8 +419,8 @@ public class GameScreen implements Screen
         float pointsTextWidth = game.smallFont.getBounds(pointsText).width;
         float pointsTextHeight = game.smallFont.getBounds(pointsText).height;
 
-        float centerPointsText = game.screenWidth / 2.0f - pointsTextWidth / 2.0f;
-        float bottomPointsText = game.buttonIconLength / 2.0f - pointsTextHeight / 2.0f;
+        float centerPointsText = Gdx.graphics.getWidth() / 2.0f - pointsTextWidth / 2.0f;
+        float bottomPointsText = (Constants.BUTTON_LENGTH*game.ppm) / 2.0f - pointsTextHeight / 2.0f;
 
         game.smallFont.draw(game.batch, pointsText, centerPointsText, bottomPointsText);
     }
@@ -423,25 +432,25 @@ public class GameScreen implements Screen
         float timeTextWidth = game.smallFont.getBounds(formattedTime).width;
         float timeTextHeight = game.smallFont.getBounds(formattedTime).height;
 
-        float centerTimeText = game.screenWidth / 2.0f - timeTextWidth / 2.0f;
-        float topTimeText = game.screenHeight - timeTextHeight / 2.0f;
+        float centerTimeText = game.worldWidth * game.ppm / 2.0f - timeTextWidth / 2.0f;
+        float topTimeText = game.worldHeight * game.ppm - timeTextHeight / 2.0f;
 
         game.smallFont.draw(game.batch, formattedTime, centerTimeText, topTimeText);
     }
 
     private void renderSetup()
     {
-        Gdx.gl20.glClearColor(game.BG_COLOR.r, game.BG_COLOR.g, game.BG_COLOR.b, 1);
+        Gdx.gl20.glClearColor(Constants.BG_COLOR.r, Constants.BG_COLOR.g, Constants.BG_COLOR.b, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // tell the camera to update its matrices.
-        camera.update();
+        //camera.update();
         // tell the SpriteBatch to render in the
         // coordinate system specified by the camera.
-        game.batch.setProjectionMatrix(camera.combined);
+        //game.batch.setProjectionMatrix(camera.combined);
 
-        game.batch.enableBlending();
-        game.batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        //game.batch.enableBlending();
+        //game.batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     }
 
     private void forceSpawn()
@@ -462,8 +471,8 @@ public class GameScreen implements Screen
 
     private void newSpawn() {
         spawnWaitTime = 0.0f;
-        nextSpawnTime = MathUtils.random(game.MINIMUM_SPAWN_TIME, game.MAXIMUM_SPAWN_TIME);
-        spawnCount = MathUtils.random(game.MINIMUM_SPAWN_COUNT, game.MAXIMUM_SPAWN_COUNT);
+        nextSpawnTime = MathUtils.random(Constants.MINIMUM_SPAWN_TIME, Constants.MAXIMUM_SPAWN_TIME);
+        spawnCount = MathUtils.random(Constants.MINIMUM_SPAWN_COUNT, Constants.MAXIMUM_SPAWN_COUNT);
     }
 
     private void spawnPokable()
@@ -488,10 +497,10 @@ public class GameScreen implements Screen
     private Pokable generateRandomPokable()
     {
         Circle newCircle = new Circle();
-        newCircle.radius = MathUtils.random(game.minCircleRadius, game.maxCircleRadius);
-        newCircle.x = MathUtils.random(0.0f + newCircle.radius, (float)game.screenWidth - newCircle.radius);
-        newCircle.y = MathUtils.random(game.buttonIconLength + newCircle.radius,
-                                       (float)game.screenHeight - newCircle.radius);
+        newCircle.radius = MathUtils.random(Constants.MINIMUM_CIRCLE_RADIUS, Constants.MAXIMUM_CIRCLE_RADIUS);
+        newCircle.x = MathUtils.random(0.0f + newCircle.radius, game.worldWidth - newCircle.radius);
+        newCircle.y = MathUtils.random(Constants.BUTTON_LENGTH + newCircle.radius,
+                                       game.worldHeight - newCircle.radius);
 
         /*Color newColor = new Color();
         newColor.r = MathUtils.random(0.5f, 1.0f);
@@ -506,7 +515,7 @@ public class GameScreen implements Screen
 
         Color newColor = newHSL.toRGB();
 
-        float newLifeSpan = MathUtils.random(game.MINIMUM_LIFE_TIME, game.MAXIMUM_LIFE_TIME);
+        float newLifeSpan = MathUtils.random(Constants.MINIMUM_LIFE_TIME, Constants.MAXIMUM_LIFE_TIME);
 
         return new Pokable(game, newCircle, newColor, newLifeSpan);
     }
@@ -555,8 +564,9 @@ public class GameScreen implements Screen
     @Override
     public void resize(int width, int height)
     {
-        pauseMenuStage.getViewport().update(width, height, true);
-        pauseButtonStage.getViewport().update(width, height, true);
+        game.resize(width, height);
+        disposeStages();
+        buildStages();
     }
 
 	@Override
@@ -566,30 +576,42 @@ public class GameScreen implements Screen
 		//music.play();
         // There is no music good enough for poke! HA!
         // Except the music you choose, of course :)
+        if(gameState == GameState.PAUSE)
+        {
+            setGameState(GameState.RUN);
+        }
 	}
 
 	@Override
-	public void hide() {
+	public void hide()
+    {
+        if(gameState == GameState.RUN)
+        {
+            setGameState(GameState.PAUSE);
+        }
 	}
 
 	@Override
 	public void pause()
     {
-        setGameState(GameState.PAUSE);
+        if(gameState == GameState.RUN)
+        {
+            setGameState(GameState.PAUSE);
+        }
 	}
 
 	@Override
 	public void resume()
     {
-        setGameState(GameState.RUN);
+        if(gameState == GameState.PAUSE)
+        {
+            setGameState(GameState.RUN);
+        }
 	}
 
 	@Override
 	public void dispose() {
-        introStage.dispose();
-        pauseMenuStage.dispose();
-        pauseButtonStage.dispose();
-        gameOverStage.dispose();
+        disposeStages();
 	}
 
     public class GameInputProcessor implements InputProcessor {
@@ -609,27 +631,28 @@ public class GameScreen implements Screen
         }
 
         @Override
-        public boolean touchDown (int x, int y, int pointer, int button) {
+        public boolean touchDown (int pixelX, int pixelY, int pointer, int button)
+        {
             if (gameState == GameState.RUN || gameState == GameState.INTRO)
             {
-                Vector3 touchPos = new Vector3(x, y, 0.0f);
-                camera.unproject(touchPos);
+                float worldX = (float) pixelX / game.ppm;
+                float worldY = game.worldHeight - (float) pixelY / game.ppm;
 
                 boolean miss = true;
 
                 for(Pokable pokable : pokables)
                 {
-                    if (pokable.getHittableCircle().contains(touchPos.x, touchPos.y))
+                    if (pokable.getHittableCircle().contains(worldX, worldY))
                     {
                         game.hits++;
 
                         pokable.setState(Pokable.PokableState.HIT);
                         miss = false;
 
-                        float radiusPercent = pokable.getVisualRadius() / game.maxCircleRadius;
-                        float volume = game.DEFAULT_VOLUME;
-                        float pitch = game.RADIUS_PERCENT_TO_PITCH * radiusPercent + game.PITCH_ADJUSTMENT;
-                        float pan = game.DEFAULT_PAN;
+                        float radiusPercent = pokable.getVisualRadius() / Constants.MAXIMUM_CIRCLE_RADIUS;
+                        float volume = Constants.DEFAULT_VOLUME;
+                        float pitch = Constants.RADIUS_PERCENT_TO_PITCH * radiusPercent + Constants.PITCH_ADJUSTMENT;
+                        float pan = Constants.DEFAULT_PAN;
                         game.hitSound.play(volume, pitch, pan);
                     }
                 }

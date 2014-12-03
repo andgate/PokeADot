@@ -44,7 +44,7 @@ public class MainMenuScreen implements Screen
         Gdx.input.setInputProcessor(stage);
 
         final LabelStyle titleLabelStyle = new LabelStyle(game.largeFont, Color.CYAN);
-        final Label titleLabel = new Label(game.GAME_NAME, titleLabelStyle);
+        final Label titleLabel = new Label(Constants.GAME_NAME, titleLabelStyle);
 
 
         final TextButtonStyle buttonStyle = new TextButtonStyle(game.skin.getDrawable("default-round"),
@@ -107,7 +107,7 @@ public class MainMenuScreen implements Screen
 	@Override
 	public void render(float delta)
     {
-        Gdx.gl20.glClearColor(game.BG_COLOR.r, game.BG_COLOR.g, game.BG_COLOR.b, 1);
+        Gdx.gl20.glClearColor(Constants.BG_COLOR.r, Constants.BG_COLOR.g, Constants.BG_COLOR.b, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
@@ -117,6 +117,7 @@ public class MainMenuScreen implements Screen
 
 	@Override
 	public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
 	}
 
 	@Override
