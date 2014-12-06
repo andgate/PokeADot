@@ -100,9 +100,9 @@ public class GameScreen implements Screen
 
         buildStages();
 
-        im.setProcessors(new Array<InputProcessor>(
+        /*im.setProcessors(new Array<InputProcessor>(
                 new InputProcessor[]{new GameInputProcessor()}
-        ));
+        ));*/
     }
 
     private void buildStages()
@@ -309,7 +309,7 @@ public class GameScreen implements Screen
             {
                 it.remove();
             }
-            else if(pokable.getState() == Pokable.PokableState.EXPIRED)
+            if(pokable.getState() == Pokable.PokableState.EXPIRED)
             {
                 it.remove();
                 pokablesExpired++;

@@ -78,11 +78,8 @@ public class Pokable
                 updateHit(delta);
                 break;
             case DESTRUCT:
-                // Maybe do cool animation
-                pokableState = PokableState.EXPIRED;
                 break;
             case EXPIRED:
-                // Do nothing, wait to be removed.
                 break;
         }
     }
@@ -92,7 +89,7 @@ public class Pokable
         timeElapsed += delta;
         if(visualCircle.radius <= 0.0f)
         {
-            pokableState = PokableState.DESTRUCT;
+            pokableState = PokableState.EXPIRED;
             hittableCircle.radius = 0.0f;
         }
         else
