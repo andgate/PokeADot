@@ -69,5 +69,6 @@ public class HighScoreService
         String encodedString = Base64Coder.encodeString(jsonString);
         FileHandle saveFile = Gdx.files.external(HIGHSCORE_EXTERNAL_PATH);
         saveFile.writeString(encodedString, false);
+
     }
 }

@@ -51,19 +51,29 @@ public class Pokable
     private float timeLimit;
     private float timeElapsed;
 
-    private final static float NO_TIME = 0.0f;
-	
-	public Pokable(final Poke newGame, Circle newCircle, Color newColor, float newTimeLimit)
-	{
-		game = newGame;
-		visualCircle = newCircle;
-		color = newColor;
-        initialCircle = new Circle(newCircle.x, newCircle.y, newCircle.radius);
-        hittableCircle = new Circle(newCircle.x, newCircle.y, newCircle.radius);
-        visualCircle = new Circle(newCircle.x, newCircle.y, newCircle.radius);
+    private float activeSpeed;
+    private float hitSpeed;
 
-        timeLimit = newTimeLimit;
+    private final static float NO_TIME = 0.0f;
+
+    private final static float SPEED_UP_FACTOR
+            = 2.0f;
+    private final static float HIT_SPEED
+            = -(Constants.MINIMUM_CIRCLE_RADIUS / Constants.MINIMUM_LIFE_TIME) * SPEED_UP_FACTOR;
+	
+	public Pokable(final Poke game, Circle circle, Color color, float timeLimit)
+	{
+		this.game = game;
+		this.color = new Color(color);
+        this.initialCircle = new Circle(circle);
+        this.hittableCircle = new Circle(circle);
+        this.visualCircle = new Circle(circle);
+
+        this.timeLimit = timeLimit;
         timeElapsed = NO_TIME;
+
+        activeSpeed = -(initialCircle.radius / timeLimit);
+        hitSpeed = -(Constants.MINIMUM_CIRCLE_RADIUS / Constants.MINIMUM_LIFE_TIME) * 5.0f;
 	}
 
     public void update(float delta)
@@ -86,24 +96,44 @@ public class Pokable
 
     private void updateActive(float delta)
     {
-        timeElapsed += delta;
+        shrink(activeSpeed * delta, PokableState.EXPIRED);
+    }
+
+    private float expandAccumulator = 0.0f;
+    private static final float MAX_EXPANSION_TIME = 0.2f;
+    private void updateHit(float delta)
+    {
+        expandAccumulator += delta;
+        float distance = hitSpeed * delta;
+        if(expandAccumulator < MAX_EXPANSION_TIME)
+        {
+            distance /= -2.0f;
+        }
+
+        shrink(distance, PokableState.DESTRUCT);
+    }
+
+    private void shrink(final float distance, final PokableState endState)
+    {
         if(visualCircle.radius <= 0.0f)
         {
-            pokableState = PokableState.EXPIRED;
-            hittableCircle.radius = 0.0f;
+            pokableState = endState;
+            visualCircle.radius = 0.0f;
         }
         else
         {
-            visualCircle.radius = initialCircle.radius * (1.0f - timeElapsed/timeLimit);
-            hittableCircle.radius = visualCircle.radius >= Constants.MINIMUM_CIRCLE_RADIUS
-                                    ? visualCircle.radius
-                                    : Constants.MINIMUM_CIRCLE_RADIUS;
+            visualCircle.radius += distance;
+            if(endState == PokableState.EXPIRED)
+            {
+                hittableCircle.radius = visualCircle.radius >= Constants.MINIMUM_CIRCLE_RADIUS
+                        ? visualCircle.radius
+                        : Constants.MINIMUM_CIRCLE_RADIUS;
+            }
+            else
+            {
+                hittableCircle.radius = 0.0f;
+            }
         }
-    }
-
-    private void updateHit(float delta)
-    {
-        pokableState = PokableState.DESTRUCT; // destruct when sequence finishes
     }
 
 	public void render()
@@ -115,6 +145,7 @@ public class Pokable
                 break;
             case HIT:
                 // render hit sequence
+                renderActiveCircle();
                 break;
             case DESTRUCT:
                 break;
