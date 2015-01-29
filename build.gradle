@@ -16,7 +16,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = 'Poke'
+        appName = 'Poke-A-Dot'
         gdxVersion = '1.4.1'
         roboVMVersion = '1.0.0-alpha-04'
         box2DLightsVersion = '1.3'

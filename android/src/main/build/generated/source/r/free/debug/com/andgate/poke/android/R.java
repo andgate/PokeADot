@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.andgate.poke.android;
+package com.andgate.pokeadot.android;
 
 public final class R {
     public static final class attr {

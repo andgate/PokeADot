@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.andgate.poke"
-    android:versionCode="13"
+    package="com.andgate.pokeadot"
+    android:versionCode="14"
     android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -17,7 +17,7 @@
         <meta-data android:name="com.google.android.gms.version"
                    android:value="@integer/google_play_services_version" />
         <activity
-            android:name="com.andgate.poke.AndroidLauncher"
+            android:name="com.andgate.pokeadot.AndroidLauncher"
             android:label="@string/app_name" 
             android:screenOrientation="landscape"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">

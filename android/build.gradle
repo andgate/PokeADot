@@ -22,11 +22,11 @@ android {
 
     productFlavors {
         paid {
-            applicationId 'com.andgate.poke'
+            applicationId 'com.andgate.pokeadot'
             buildConfigField 'boolean', 'FREE', 'false'
         }
         free {
-            applicationId 'com.andgate.pokefree'
+            applicationId 'com.andgate.pokeadotfree'
             buildConfigField 'boolean', 'FREE', 'true'
         }
     }
